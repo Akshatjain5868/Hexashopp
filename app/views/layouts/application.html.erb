@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parampara</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body>
+    <p class="notice"><%= notice%>  </p> 
+    <p class="alert"><%= alert%>  </p> 
+    <!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="http://localhost:3000/home/index.html" class="logo">
+                        <%= image_tag "logo.png"%>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <%= form_with url:"/gallery/search" , method: :post do |f| %>
+                            <%= f.text_field :keyword %>
+                            <%= f.submit "search" %>
+                        <%end%>
+
+                        <% if current_user %>
+                            <li> Hi, <%= @name%> </li>
+                        <%end%>
+                        <li class="scroll-to-section"><a href="#explore">Explore</a></li>
+
+                        <li class="submenu">
+                            <a href="javascript:;">Pages</a>
+                            <ul>
+                                <li> <%= link_to "about" , home_about_path %> </li>
+                                <li> <%= link_to "products" , gallery_index_path %> </li>
+                                <li> <%= link_to "contact" , home_contact_path %> </li>
+                            </ul>
+                        </li>
+
+                        <%if current_user %>
+                            <li> <%= link_to "SignOut", destroy_user_session_path, :method => :delete %> </li>
+                        <%else%>
+                            <li> <%= link_to "Login",new_user_session_path %> </li>
+                        <%end%>
+
+                        <% if session[:admin] == "ADMIN" %>
+                            <li> <%= link_to "AdminLogOut", admin_logout_path %> </li>
+                        <%else %>
+                            <li> <%= link_to "AdminLogin", admin_login_path %> </li>
+                            <%# <%= redirect_to index_home_path %> 
+                        <%end %>
+
+                        <li>
+                            <a href="http://localhost:3000/carts">
+                                <%= image_tag "shopping_cart" ,class:"shopping_cart_icon" %>
+                            </a>
+                        </li>
+                         
+                    </ul>        
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+
+<%= yield %>
+
+
+<!-- ***** Footer Start ***** -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="first-item">
+                    <div class="logo">
+                        <%= image_tag "white-logo.png" %>
+                        <%# <img src="assets/images/white-logo.png" alt="hexashop ecommerce templatemo"> %>
+                    </div>
+                    <ul>
+                        <li><a href="#">16501 Collins Ave, Sunny Isles Beach, FL 33160, United States</a></li>
+                        <li><a href="#">hexashop@company.com</a></li>
+                        <li><a href="#">010-020-0340</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <h4>Shopping &amp; Categories</h4>
+                <ul>
+                    <li><a href="#">Wood’s Craft Shopping</a></li>
+                    <li><a href="#">Metal’s Craft Shopping</a></li>
+                    <li><a href="#">Pottery Shopping</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3">
+                <h4>Useful Links</h4>
+                <ul>
+                    <li><a href="#">Homepage</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3">
+                <h4>Help &amp; Information</h4>
+                <ul>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">FAQ's</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Tracking ID</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- jQuery -->
+<script src="assets/js/jquery-2.1.0.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="assets/js/popper.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- Plugins -->
+<script src="assets/js/owl-carousel.js"></script>
+<script src="assets/js/accordions.js"></script>
+<script src="assets/js/datepicker.js"></script>
+<script src="assets/js/scrollreveal.min.js"></script>
+<script src="assets/js/waypoints.min.js"></script>
+<script src="assets/js/jquery.counterup.min.js"></script>
+<script src="assets/js/imgfix.min.js"></script> 
+<script src="assets/js/slick.js"></script> 
+<script src="assets/js/lightbox.js"></script> 
+<script src="assets/js/isotope.js"></script> 
+
+<!-- Global Init -->
+<script src="assets/js/custom.js"></script>
+
+<script>
+
+    $(function() {
+        var selectedClass = "";
+        $("p").click(function(){
+        selectedClass = $(this).attr("data-rel");
+        $("#portfolio").fadeTo(50, 0.1);
+            $("#portfolio div").not("."+selectedClass).fadeOut();
+        setTimeout(function() {
+            $("."+selectedClass).fadeIn();
+            $("#portfolio").fadeTo(50, 1);
+        }, 500);
+            
+        });
+    });
+
+</script>
+  </body>
+</html>

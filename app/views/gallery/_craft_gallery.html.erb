@@ -1,0 +1,30 @@
+<table>
+    <tr class="card_row_single"><br>
+        <% count=0 %>
+        <% @craft_gallery.each do |craft|%> 
+            <% if (count % 4) == 0%>
+            </tr>
+            <tr> 
+            <% end %>
+            <% count+=1 %>
+            <td class="individual_card"> 
+            <% temp=0 %>
+                <% if craft.item_images %>
+                    <% (0 ... craft.item_images.count).each do |image| %>
+                        <% temp += 1%>
+                        <% if temp == 1 %>
+                            <%= image_tag(craft.item_images[0] ,:height=>"100",:width=>"100") %>
+                        <%end%>
+                    <%end %>
+                <%end%>
+                <br />
+                <strong class="card_strong" > Name :  </strong> <%= craft.name%> <br>
+                <strong class="card_strong"> Description :  </strong> <%= craft.description%><br>
+                <strong  class="card_strong"> Price :  </strong>&#x24; <%= craft.price %> 
+                <br /><br />
+                <%# <%= button_to 'Buy now', line_items_path(:craft_store_id => craft.id) %>
+                <%= button_to 'Buy now', line_items_path(:craft_store_id => craft.id)%> 
+            </td>
+        <% end %>
+    </tr>
+</table>

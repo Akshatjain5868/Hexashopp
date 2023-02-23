@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <div class="form_container">
+
+  <p id="notice"><%= notice %></p>
+
+  <p class="multi_images_display">
+    <% (0 ... @craft_store.item_images.count).each do |image| %>
+      <%= image_tag(@craft_store.item_images[image] , class:"img_size") %>
+    <%end%>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @craft_store.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @craft_store.description %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    <%= @craft_store.price %>
+  </p>
+
+  <br>
+
+  <%= link_to 'Edit', edit_craft_store_path(@craft_store) %> |
+  <%= link_to 'Back', craft_stores_path %>
+
+  </div>
+</div>

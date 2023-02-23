@@ -1,0 +1,66 @@
+<%# <br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br> %>
+<div class="wrapper">
+  <div class="form_container">
+
+    <%= flash[:notice] %>
+    <h1>Admin Login</h1>
+
+    <%= form_with url: "/admin/login" , method: :post do |f| %>
+
+        <div >
+            <%= f.label :username %> 
+            <%= f.text_field :username, class:"input_bar"%>
+        </div>
+        <br>
+        <div >
+            <%= f.label :password %> 
+            <%= f.password_field :password, class:"input_bar" %>
+        </div>
+        <br>
+        <br>
+        <div >
+            <%= f.submit "Submit" %>
+        </div>
+    <%end%>
+    <br>
+
+    <%= link_to "Click here to visit home page", home_index_path%>
+
+    </div>
+</div>
+
