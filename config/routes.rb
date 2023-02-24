@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'gallery/purchase_complete'
   post 'gallery/search'
   get 'gallery/search'
+  get 'gallery/show_individual'
 
   resources :craft_stores
   

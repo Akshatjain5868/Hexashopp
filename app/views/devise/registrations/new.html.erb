@@ -7,10 +7,10 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
-      <%= f.label :email %><br />
+      <%= f.label :email %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email" , class:"input_bar" %>
     </div>
-
+    <br>
     <div class="field">
       <%= f.label :password %>
       <% if @minimum_password_length %>
@@ -20,9 +20,10 @@
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %><br />
+      <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password" , class:"input_bar" %>
     </div>
+    <br />
 
     <div class="actions">
       <%= f.submit "Sign up" %>

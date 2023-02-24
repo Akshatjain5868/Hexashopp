@@ -57,4 +57,5 @@ ActiveMerchant::Billing::Base.mode = :test
     keyword = '%' + params[:keyword] + '%'
     @craft_gallery = CraftStore.find_by_sql ["Select * from craft_stores WHERE name like ? or description like ?",keyword,keyword]
   end
+
 end
