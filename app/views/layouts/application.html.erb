@@ -61,9 +61,12 @@
                         <%end %>
 
                         <li>
-                            <a href="http://localhost:3000/carts<% @cart_icon_current_user %>">
+                        <%# <% :controller=> :application :action => :current_cart %>
+                            <a href="http://localhost:3000/carts/<% @current_cart %>">
                                 <%= image_tag "shopping_cart" ,class:"shopping_cart_icon" %>
                             </a>
+
+                            <%# <%= link_to "cart" , gallery_index_path %>
                         </li>
                          
                     </ul>        
