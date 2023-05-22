@@ -1,12 +1,10 @@
 databases:
-  - name: mysite
+  - name: postgres
     plan: free
-    databaseName: mysite
-    user: mysite
-
+    ipAllowList: []
 services:
   - type: web
-    name: Hexashop
+    name: rails
     plan: free
     env: ruby
     buildCommand: "./bin/render-build.sh"
@@ -14,7 +12,13 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysite
+          name: postgres
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
+        
+  - type: redis
+    name: redis
+    ipAllowList: []
+    plan: free
+    maxmemoryPolicy: noeviction
