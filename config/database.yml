@@ -28,5 +28,7 @@ test:
 
 production:
   <<: *default
+  database: parampara_production
+  username: parampara
   url: <%= ENV['DATABASE_URL'] %>
   # database:
